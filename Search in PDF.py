@@ -1,7 +1,7 @@
 import PyPDF2, requests
 def main():
     tries = "yes"
-    url = "https://cleveracademy.vn/wp-content/uploads/2016/10/To-Kill-a-Mockingbird.pdf" #change this to any link later
+    url = input("Please enter the URL of the PDF: ") #change this to any link later
     while "y" in tries.lower(): #This keeps the program running as long as someone wants to use it.
         word, x1 = input("\n\nPlease enter the word you are trying to find: "), 0
         test(word, x1, url)
@@ -12,14 +12,13 @@ def test(word, x1, Q1):
     open("PDF.pdf", "wb").write(transfer.content)
     pdfReader = PyPDF2.PdfFileReader("PDF.pdf")
     pages = pdfReader.getNumPages()
-    while x1 != pages: #While the number of pages searched is not equal to the number of pages in the PDF: keep searching.
+    for x1 in range(pages): #While the number of pages searched is not equal to the number of pages in the PDF: keep searching.
         derp1 = pdfReader.getPage(x1)
         derp2 = derp1.extractText()
         derp2 = derp2.replace("\n", " ") #This takes out PDF formatting of random indents and replaces it with spaces.
         derp3 = derp2.replace(" ", "") #Taking out all spaces allows for a more accurate search because of PDF formatting.
         if word.lower() in derp3.lower():
             z = final(derp3, derp2, word, x, x1, z) #Z is returned from final and printed to show number of results.
-        x1 += 1
         if not x1 > 0:
             z = final(derp3, derp2, word, x, x1, z)
     print(str(z) + " Results found.\n") #This is better than "word not found" because it displays the same information with less code.
