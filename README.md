@@ -13,6 +13,6 @@ Python 3.6
 # Current Challenges:
 Getting Python and HTML to work together.
 
-Reconfiguring Python code to work with online PDF's.
+Reconfiguring Python code to work with online PDFs.
 
 Formatting of input and output information.
