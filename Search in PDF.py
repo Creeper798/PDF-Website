@@ -1,12 +1,12 @@
 import PyPDF2, requests
 def main():
     tries = "yes"
-    url = input("Please enter the URL of the PDF: ") #change this to any link later
+    url = input("Please enter the URL of the PDF: ")
     while "y" in tries.lower(): #This keeps the program running as long as someone wants to use it.
-        word, x1 = input("\n\nPlease enter the word you are trying to find: "), 0
-        test(word, x1, url)
+        word = input("\n\nPlease enter the word you are trying to find: ")
+        test(word, url)
         tries = input("Would you like to search for another word? ") #Do we need this for website???
-def test(word, x1, Q1):
+def test(word, Q1):
     x, z = 0, 0
     transfer = requests.get(Q1)
     open("PDF.pdf", "wb").write(transfer.content)
@@ -28,7 +28,9 @@ def final(derp3, derp2, word, x, x1, z):
     while x != len(nospace): #This fixes the 1 word per page problem, now it searches through the whole page and returns every instance of the word.
         if word.lower() in nospace[x]:
             z += 1 #This allows the variable Z to keep track of how many times a word is found successfully.
-            print('"' + derp[x] + '."  (Found on page: ' + str(x1 + 1) + ")\n\n") #have this output to json or txt file
+            finalprint = ('"' + derp[x] + '."  (Found on page: ' + str(x1 + 1) + ")\n\n")
+            open("Testnotepad.txt", "a").write(finalprint)  #Add number of results.
         x += 1
     return z
 main()
+open("Testnotepad.txt", "wb").close()
