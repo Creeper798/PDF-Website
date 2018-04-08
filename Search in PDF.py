@@ -1,9 +1,9 @@
 import PyPDF2, requests
 def main():
     tries = "yes"
-    url = input("Please enter the URL of the PDF: ")
+    url = URLvar # maybe have it accept a file directory for downloaded files.
     while "y" in tries.lower(): #This keeps the program running as long as someone wants to use it.
-        word = input("\n\nPlease enter the word you are trying to find: ")
+        word = WORDvar
         test(word, url)
         tries = input("Would you like to search for another word? ") #Do we need this for website???
 def test(word, Q1):
